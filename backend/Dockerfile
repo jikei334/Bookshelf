@@ -1,7 +1,10 @@
-FROM python:3.4
+FROM python:3.7
 
-WORKDIR /backend
-COPY . /backend
-RUN pip install -r requirements.txt
+ENV APP_PATH /opt/apps
+
+COPY requirements.txt $APP_PATH/
+RUN pip install -r $APP_PATH/requirements.txt
+
+WORKDIR $APP_PATH
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

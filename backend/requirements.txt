@@ -1,3 +1,4 @@
 django < 2.3
 djangorestframework
-postgres
+psycopg2
+psycopg2-binary

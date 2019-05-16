@@ -1,4 +1,21 @@
-backend:
-  build: backend/
-  ports:
-    - "8000:8000"
+version: '3.7'
+services:
+  backend:
+    build: backend/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/opt/apps
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: password
+
+volumes:
+  dbdata:
